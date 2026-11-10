@@ -1,8 +1,6 @@
 import ClosingCta from "@/components/home/ClosingCta";
-import FleetTeaser from "@/components/home/FleetTeaser";
+import Gallery from "@/components/home/Gallery";
 import HomeIntro from "@/components/home/HomeIntro";
-import NewArrival from "@/components/boarding/NewArrival";
-import NewestAddition from "@/components/home/NewestAddition";
 import ServicesStrip from "@/components/home/ServicesStrip";
 import Hero from "@/components/Hero";
 
@@ -11,9 +9,7 @@ export default function HomePage() {
     <>
       <Hero />
       <HomeIntro />
-      <NewArrival />
-      <NewestAddition />
-      <FleetTeaser />
+      <Gallery />
       <ServicesStrip />
       <ClosingCta />
     </>
