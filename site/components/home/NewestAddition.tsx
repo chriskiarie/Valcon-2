@@ -18,7 +18,9 @@ export default function NewestAddition() {
               <p className="eyebrow">Newest addition</p>
               <h2 className="band-title reveal--clip-line">
                 <span className="clip-line">{newest?.name}</span>
-                {registration ? ` · ${registration}` : null}
+                {registration ? (
+                  <span className="band-registration">{registration}</span>
+                ) : null}
               </h2>
               <p className="band-line">
                 Recently delivered to Wilson Airport.

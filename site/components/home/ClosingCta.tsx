@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/Container";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Reveal from "@/components/Reveal";
 import { emailHref, whatsappHref } from "@/lib/contact";
 import { getSite } from "@/lib/content";
@@ -37,6 +37,16 @@ export default function ClosingCta() {
                 <a className="btn btn--outline" href={emailHref(site.email)}>
                   Email
                 </a>
+              )}
+              {!showWhatsApp && !showEmail && (
+                <>
+                  <a className="btn btn--on-dark" href="/contact/">
+                    Contact
+                  </a>
+                  <a className="btn btn--outline" href="/fleet/">
+                    View the fleet
+                  </a>
+                </>
               )}
             </div>
           </div>

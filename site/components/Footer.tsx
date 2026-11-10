@@ -83,9 +83,6 @@ export default function Footer({ site }: FooterProps) {
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>
-          <p className="footer-concept-pill">
-            Concept B · Nightfall
-          </p>
           <Link href="/credits/" className="footer-credits-link">
             Image credits
           </Link>
@@ -94,19 +91,19 @@ export default function Footer({ site }: FooterProps) {
         <p className="footer-credit">
           Hero photo:{" "}
           <a
-            href="https://commons.wikimedia.org/wiki/File:Sunset_At_The_Airport_(192242589).jpeg"
+            href="https://commons.wikimedia.org/wiki/File:Munich_Airport_plane_handling_at_sunset.jpg"
             rel="noreferrer"
             target="_blank"
           >
-            Jongsun Lee
+            Richard Bartz
           </a>{" "}
           / Wikimedia Commons,{" "}
           <a
-            href="https://creativecommons.org/licenses/by/3.0"
+            href="https://creativecommons.org/licenses/by-sa/2.5"
             rel="noreferrer"
             target="_blank"
           >
-            CC BY 3.0
+            CC BY-SA 2.5
           </a>
         </p>
       </Container>

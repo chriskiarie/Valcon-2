@@ -89,7 +89,7 @@ export default function Hero() {
           height="1080"
         />
         <img
-          alt="Valcon Air regional jet fleet"
+          alt="Aircraft on the apron at dusk"
           className="hero-img"
           decoding="async"
           fetchPriority="high"

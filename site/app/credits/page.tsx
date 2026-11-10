@@ -16,8 +16,8 @@ export default function CreditsPage() {
           <p className="eyebrow">Image Credits</p>
           <h1 className="page-title">Image Credits</h1>
           <p className="page-description">
-            All images on this site are illustrative placeholder assets until
-            client photography is supplied. Credits below.
+            Photography is used illustratively for this concept preview. Credits
+            below.
           </p>
         </div>
 
@@ -25,10 +25,12 @@ export default function CreditsPage() {
           <div className="credits-section">
             <h2 className="credits-section-title">Hero Photography</h2>
             <p className="credits-entry">
-              Sunset at the airfield — Jongsun Lee / Wikimedia Commons,{" "}
-              <a href="https://creativecommons.org/licenses/by/3.0" rel="noreferrer" target="_blank">
-                CC BY 3.0
+              Munich Airport plane handling at sunset — Richard Bartz / Wikimedia
+              Commons,{" "}
+              <a href="https://creativecommons.org/licenses/by-sa/2.5" rel="noreferrer" target="_blank">
+                CC BY-SA 2.5
               </a>
+              . Cropped and resized for this demo.
             </p>
           </div>
 
@@ -38,8 +40,12 @@ export default function CreditsPage() {
               <div key={a.slug} className="credits-aircraft">
                 <h3 className="credits-aircraft-name">{a.name}</h3>
                 <p className="credits-entry">
-                  Illustrative placeholder image — to be replaced with client
-                  photography.
+                  Bombardier CRJ200 N96AP FDK MD1 — Acroterion / Wikimedia
+                  Commons,{" "}
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noreferrer" target="_blank">
+                    CC BY-SA 4.0
+                  </a>
+                  . Cropped and resized for this demo.
                 </p>
               </div>
             ))}
@@ -48,16 +54,7 @@ export default function CreditsPage() {
           <div className="credits-section">
             <h2 className="credits-section-title">Flyby Aircraft</h2>
             <p className="credits-entry">
-              SVG silhouette placeholders — original Valcon Air demo artwork.
-              To be replaced with client photography.
-            </p>
-          </div>
-
-          <div className="credits-section">
-            <h2 className="credits-section-title">Gallery Images</h2>
-            <p className="credits-entry">
-              SVG placeholder images for cabin and interior views — to be
-              replaced with client photography.
+              Original Valcon Air SVG artwork.
             </p>
           </div>
 

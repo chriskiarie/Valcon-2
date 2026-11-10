@@ -35,16 +35,10 @@ export default function FlybyLayer() {
     onComplete: null as (() => void) | null,
   });
 
-  // Plane dimensions from useState with lazy initializer
-  const [planeWidth, setPlaneWidth] = useState<number>(() => {
-    if (typeof window === "undefined") return 0;
-    return window.innerWidth >= 768 ? 240 : 150;
-  });
-  const [planeHeight, setPlaneHeight] = useState<number>(() => {
-    if (typeof window === "undefined") return 0;
-    const w = window.innerWidth >= 768 ? 240 : 150;
-    return (w * 160) / 640;
-  });
+  // Plane dimensions start at 0 on both server and client, then resolve on
+  // mount (reading window during the initialiser caused a hydration mismatch).
+  const [planeWidth, setPlaneWidth] = useState<number>(0);
+  const [planeHeight, setPlaneHeight] = useState<number>(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,6 +48,7 @@ export default function FlybyLayer() {
       setPlaneHeight((w * 160) / 640);
       contrailRef.current?.resize();
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

@@ -7,7 +7,6 @@ export default function FleetPage({
 }) {
   return (
     <div className="fleet-page">
-      <h1 className="fleet-page-title">The fleet</h1>
       <FleetRow onCardClick={onCardClick} />
     </div>
   );

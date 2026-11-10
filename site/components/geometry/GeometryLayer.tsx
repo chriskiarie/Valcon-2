@@ -14,17 +14,17 @@ export default function GeometryLayer() {
   const layerRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
-  const [isDesktop, setIsDesktop] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return window.innerWidth >= 768;
-  });
-  const [reducedMotion, setReducedMotion] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  });
+  // Start from server-safe defaults and resolve viewport preferences after
+  // mount. Reading window/matchMedia in the initialiser made the server and
+  // client render different SVG node counts (React hydration error #418).
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // One-time read of the user's motion preference after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setReducedMotion(mq.matches);
     const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
     mq.addEventListener("change", listener);
     return () => mq.removeEventListener("change", listener);
@@ -32,6 +32,7 @@ export default function GeometryLayer() {
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

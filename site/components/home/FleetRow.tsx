@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getAircraft } from "@/lib/content";
 
 /**
@@ -18,7 +18,9 @@ export default function FleetRow({
 }: {
   onCardClick?: (slug: string) => void;
 }) {
-  const aircraft = getAircraft();
+  // Memoise so the observer effect is not torn down and rebuilt on every
+  // render (getAircraft returns a fresh array each call).
+  const aircraft = useMemo(() => getAircraft(), []);
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -29,7 +31,13 @@ export default function FleetRow({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setRevealed((prev) => new Set(prev).add(entry.target.id));
+            const slug = entry.target.id.replace(/^fleet-card-/, "");
+            setRevealed((prev) => {
+              if (prev.has(slug)) return prev;
+              const next = new Set(prev);
+              next.add(slug);
+              return next;
+            });
           }
         });
       },
@@ -45,7 +53,9 @@ export default function FleetRow({
   }, [aircraft]);
 
   return (
-    <ul className="fleet-row">
+    <ul
+      className={`fleet-row${aircraft.length === 1 ? " fleet-row--single" : ""}`}
+    >
       {aircraft.map((item, idx) => {
         const isRevealed = revealed.has(item.slug);
         const variant = cardVariants[idx % cardVariants.length];
@@ -59,7 +69,13 @@ export default function FleetRow({
             onClick={() => onCardClick?.(item.slug)}
             style={{
               opacity: isRevealed ? 1 : 0,
-              transform: isRevealed ? "translateX(0) translateY(0) scale(1)" : variant === "left" ? "translateX(-30px)" : variant === "right" ? "translateX(30px)" : "scale(0.94) translateY(20px)",
+              transform: isRevealed
+                ? "translateX(0) translateY(0) scale(1)"
+                : variant === "left"
+                  ? "translateX(-30px)"
+                  : variant === "right"
+                    ? "translateX(30px)"
+                    : "scale(0.94) translateY(20px)",
             }}
           >
             <div className="fleet-media">

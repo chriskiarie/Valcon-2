@@ -82,9 +82,9 @@
   --actionbar-h: 3.5rem;
   --hero-min-height: 560px;
   --hero-overlay-color: 6 11 20;
-  --hero-overlay-soft: 15%;
-  --hero-overlay-strong: 75%;
-  --hero-text-scrim: 52%;
+  --hero-overlay-soft: 6%;
+  --hero-overlay-strong: 62%;
+  --hero-text-scrim: 58%;
   --section-pad: clamp(3rem, 6vw, 5rem);
   --reveal-shift: 1.5rem;
   --fleet-card-width: 80%;

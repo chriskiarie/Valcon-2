@@ -27,11 +27,11 @@ const site = getSite();
 
 export const metadata: Metadata = {
   title: {
-    default: "Valcon Air | Concept B · Nightfall",
-    template: `%s | Concept B · Nightfall`,
+    default: "Valcon Air",
+    template: "%s | Valcon Air",
   },
   description:
-    "Valcon Air, based at Wilson Airport, Nairobi. Concept B Nightfall design direction.",
+    "Valcon Air, based at Wilson Airport, Nairobi. Regional aviation with a quieter way to fly.",
   robots: {
     index: false,
     follow: false,

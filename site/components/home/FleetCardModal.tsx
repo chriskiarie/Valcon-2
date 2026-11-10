@@ -29,7 +29,7 @@ export default function FleetPage() {
               <p className="fleet-meta">
                 {item.registrations.length > 0
                   ? item.registrations.join(", ")
-                  : "[placeholder] Registration pending"}
+                  : "Registration pending"}
               </p>
               <span className="status-pill">
                 {item.isPlaceholder ? "Sample" : "Details pending"}
