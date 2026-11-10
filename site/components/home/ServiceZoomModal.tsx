@@ -10,44 +10,39 @@ type ServiceZoomModalProps = {
   title: string;
 };
 
-export default function ServiceZoomModal({
-  isOpen,
+export default function ServiceZoomModal(props: ServiceZoomModalProps) {
+  if (!props.isOpen) return null;
+  return <ServiceZoomContent {...props} />;
+}
+
+function ServiceZoomContent({
   onClose,
   src,
   alt,
   title,
-}: ServiceZoomModalProps) {
+}: Omit<ServiceZoomModalProps, "isOpen">) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [zoom, setZoom] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) {
-      setZoom(false);
-      return;
-    }
     // Small delay so the modal fades in before the image zooms
     const timer = setTimeout(() => setZoom(true), 120);
     return () => clearTimeout(timer);
-  }, [isOpen]);
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
+  }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
+  }, [onClose]);
 
   return (
     <div
