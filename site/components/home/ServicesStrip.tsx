@@ -6,13 +6,6 @@ import Reveal from "@/components/Reveal";
 import ServiceZoomModal from "@/components/home/ServiceZoomModal";
 import { getServices } from "@/lib/content";
 
-const REVEAL_VARIANTS: Array<"left" | "right" | "below" | "pop"> = [
-  "left",
-  "right",
-  "below",
-  "pop",
-];
-
 export default function ServicesStrip() {
   const services = getServices();
   const [zoomOpen, setZoomOpen] = useState(false);
@@ -25,50 +18,52 @@ export default function ServicesStrip() {
   return (
     <section className="home-section" aria-label="Services">
       <Container>
-        <ul className="services-grid">
-          {services.map((service, index) => {
-            const variant = REVEAL_VARIANTS[index % REVEAL_VARIANTS.length];
-            return (
+        <Reveal variant="below">
+          <ul className="service-rows">
+            {services.map((service, index) => (
               <li
                 key={service.slug}
-                className="service-card-wrapper"
-                style={{ animationDelay: `${index * 90}ms` }}
+                className={`service-row ${
+                  index % 2 === 0 ? "service-row--image-right" : ""
+                }`}
+                style={{ animationDelay: `${index * 120}ms` }}
               >
-                <Reveal variant={variant} className="service-card">
-                  <div className="service-media">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="service-image"
-                      loading="lazy"
-                      decoding="async"
-                      width="600"
-                      height="400"
-                    />
-                  </div>
+                <div className="service-number">0{index + 1}</div>
+                <div className="service-copy">
                   <h2 className="service-title">{service.title}</h2>
-                  <p className="service-copy">
+                  <p className="service-copy-text">
                     {service.summary.replace(/\[placeholder\]/gi, "").trim()}
                   </p>
-                </Reveal>
-                <button
-                  className="service-zoom-btn"
-                  onClick={() => {
-                    setActiveService({
-                      src: service.image,
-                      alt: service.title,
-                      title: service.title,
-                    });
-                    setZoomOpen(true);
-                  }}
-                >
-                  <span className="service-zoom-label">Open image</span>
-                  <span className="service-zoom-icon">↗</span>
-                </button>
+                </div>
+                <div className="service-media">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="service-image"
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="600"
+                  />
+                  <button
+                    className="service-zoom-btn"
+                    onClick={() => {
+                      setActiveService({
+                        src: service.image,
+                        alt: service.title,
+                        title: service.title,
+                      });
+                      setZoomOpen(true);
+                    }}
+                  >
+                    <span className="service-zoom-label">Open image</span>
+                    <span className="service-zoom-icon">↗</span>
+                  </button>
+                </div>
               </li>
-            );
-          })}
-        </ul>
+            ))}
+          </ul>
+        </Reveal>
       </Container>
       {activeService && (
         <ServiceZoomModal

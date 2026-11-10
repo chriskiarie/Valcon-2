@@ -11,9 +11,9 @@ export default function HomePage() {
     <>
       <Hero />
       <HomeIntro />
-      <FleetTeaser />
       <NewArrival />
       <NewestAddition />
+      <FleetTeaser />
       <ServicesStrip />
       <ClosingCta />
     </>

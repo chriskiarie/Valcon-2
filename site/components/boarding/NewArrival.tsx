@@ -52,16 +52,19 @@ export default function NewArrival() {
   return (
     <section className="home-section" id="new-arrival">
       <Container>
-        <Reveal variant="right">
-          <div ref={revealRef} className="new-arrival-band">
-            <p className="eyebrow new-arrival-eyebrow">New arrival</p>
-            <div className="new-arrival-board">
-              {rows.map((row) => (
-                <div key={row.label} className="new-arrival-row">
-                  <span className="new-arrival-label">{row.label}</span>
-                  <SplitFlap value={row.value} flipped={flipped} />
-                </div>
-              ))}
+        <Reveal variant="below">
+          <div className="editorial-row arrival-row">
+            <span className="editorial-number">02</span>
+            <div ref={revealRef} className="new-arrival-band">
+              <p className="eyebrow new-arrival-eyebrow">New arrival</p>
+              <div className="new-arrival-board">
+                {rows.map((row) => (
+                  <div key={row.label} className="new-arrival-row">
+                    <span className="new-arrival-label">{row.label}</span>
+                    <SplitFlap value={row.value} flipped={flipped} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Reveal>

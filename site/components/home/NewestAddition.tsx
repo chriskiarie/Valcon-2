@@ -12,12 +12,13 @@ export default function NewestAddition() {
   return (
     <section className="home-section">
       <Container>
-        <Reveal variant="left">
-          <div className="addition-band on-dark">
-            <div>
+        <Reveal variant="below">
+          <div className="editorial-row addition-row">
+            <span className="editorial-number">03</span>
+            <div className="editorial-copy">
               <p className="eyebrow">Newest addition</p>
-              <h2 className="band-title reveal--clip-line">
-                <span className="clip-line">{newest?.name}</span>
+              <h2 className="band-title">
+                {newest?.name}
                 {registration ? (
                   <span className="band-registration">{registration}</span>
                 ) : null}
@@ -26,7 +27,6 @@ export default function NewestAddition() {
                 Recently delivered to Wilson Airport.
               </p>
             </div>
-
             <div className="band-actions">
               <Button href="/fleet/" variant="on-dark">
                 View the fleet

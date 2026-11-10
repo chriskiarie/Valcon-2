@@ -3,8 +3,6 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import ActionBar from "@/components/ActionBar";
 import Footer from "@/components/Footer";
-import FlybyLayer from "@/components/flyby/FlybyLayer";
-import GeometryLayer from "@/components/geometry/GeometryLayer";
 import Header from "@/components/Header";
 import { getSite } from "@/lib/content";
 import { readCssToken } from "@/lib/tokens";
@@ -70,8 +68,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header site={site} tone="dark" />
-        <FlybyLayer />
-        <GeometryLayer />
         <main className="site-main" id="main">
           {children}
         </main>
